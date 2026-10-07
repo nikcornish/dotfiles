@@ -1,0 +1,1 @@
+alias godocs='cd ~/Documents

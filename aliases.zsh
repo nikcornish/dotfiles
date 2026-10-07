@@ -1,5 +1,5 @@
 # General Shortcuts
-alias z='zed ~/.zshrc'
+alias z='nano ~/.zshrc'
 alias z!='source ~/.zshrc'
 alias c='clear'
 alias l='ls -la'
