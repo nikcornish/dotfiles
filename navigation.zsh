@@ -1,1 +1,2 @@
-alias godocs='cd ~/Documents
+alias godocs='cd ~/Documents'
+
