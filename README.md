@@ -24,60 +24,24 @@ These files live in `~/.zsh/` on each machine but are never committed:
 
 ## How it works
 
-`~/.zshrc` sources everything in `~/.zsh/*.zsh` via a glob:
+A `~/.zshrc` file sources all .zsh files in the project directory. 
 
-```zsh
-for file in ~/.zsh/*.zsh; do
-  source "$file"
-done
-```
-
-The files in this repo are **symlinked** into `~/.zsh/`, so zsh loads them as normal but the source of truth is this git repo.
+On MacOS, clone the repo to your home directory `~/` so it will sit alongside the `.zshrc` file you create in Step 2.
 
 ## Setting up on a new machine
 
-### 1. Clone this repo
+### 1. Clone repo to home directory:
 
 ```bash
-git clone <repo-url> ~/Documents/Side\ Projects/dotfiles
+cd ~/
+git clone https://github.com/nikcornish/dotfiles.git
 ```
 
-### 2. Create the `~/.zsh/` directory
-
-```bash
-mkdir -p ~/.zsh
-```
-
-### 3. Symlink each file into `~/.zsh/`
-
-```bash
-ln -s ~/Documents/Side\ Projects/dotfiles/aliases.zsh ~/.zsh/aliases.zsh
-ln -s ~/Documents/Side\ Projects/dotfiles/git.zsh ~/.zsh/git.zsh
-ln -s ~/Documents/Side\ Projects/dotfiles/yarn.zsh ~/.zsh/yarn.zsh
-ln -s ~/Documents/Side\ Projects/dotfiles/functions.zsh ~/.zsh/functions.zsh
-ln -s ~/Documents/Side\ Projects/dotfiles/prompt.zsh ~/.zsh/prompt.zsh
-```
-
-### 4. Create local-only files manually
-
-Create `~/.zsh/tools.zsh`, `~/.zsh/bosch.zsh`, and `~/.zsh/apiKeys.zsh` for machine-specific config and secrets.
-
-### 5. Adding a new dotfile in future
-
-1. Create the file in `~/Documents/Side Projects/dotfiles/your-file.zsh`
-2. Symlink it: `ln -s ~/Documents/Side\ Projects/dotfiles/your-file.zsh ~/.zsh/your-file.zsh`
-3. Reload: `source ~/.zshrc` (or `z!`)
-4. Commit and push
-
-### 6. Set up `~/.zshrc`
+### 2. Set up `~/.zshrc`
 
 ```zsh
 # Source all zsh config files
-for file in ~/.zsh/*.zsh; do
+for file in ~/.dotfiles/*.zsh; do
   source "$file"
 done
-
-#THIS MUST BE AT THE END OF THE FILE FOR SDKMAN TO WORK!!!
-export SDKMAN_DIR="$HOME/.sdkman"
-[[ -s "$HOME/.sdkman/bin/sdkman-init.sh" ]] && source "$HOME/.sdkman/bin/sdkman-init.sh"
 ```
